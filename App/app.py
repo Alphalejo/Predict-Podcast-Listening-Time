@@ -2,6 +2,10 @@ import streamlit as st
 import json
 import joblib
 
+
+base="light"
+primaryColor="forestGreen"
+
 # ==============================================================================
 # Importing Required Data
 # ==============================================================================
@@ -42,6 +46,7 @@ st.markdown("""
         
         .st-emotion-cache-gi0tri{
             display: none;}
+
     </style>
 """, unsafe_allow_html=True)
 
@@ -92,11 +97,10 @@ if advanced_predictions:
         )
         podcast = podcasts_map[podcast_raw]
     
-        genre_raw = st.selectbox(
+        genre = st.selectbox(
             "Select the genre of the episode:",
             options= genres_list
         )
-        genre = genres_list[genre_raw]
 
     with episode_col:
         title = st.number_input('Episode Number:', min_value= 1, max_value= 300, value= 1, step= 1)
@@ -126,5 +130,58 @@ else:
     publication_day = 2
     publication_time = 12
 
+st.divider()
 
+import backend
     
+st.markdown("""<style>
+            .st-emotion-cache-13gev4o{
+                align_self: center;
+            }
+            .st-emotion-cache-3pwa5w{
+                text-align: center;
+                }
+            .st-emotion-cache-p75nl5{
+                margin: auto;
+            }
+
+            .st-emotion-cache-1bwe20w{
+                font-size: 1.2rem !important;
+            }
+            </style> """, unsafe_allow_html=True)
+
+if st.button('Predict', key='predict_button', type='primary', use_container_width=True):
+
+    with st.empty():
+        st.markdown("""
+                    <style>
+                        .st-emotion-cache-1bwe20w{font-size: 1.3rem !important;}
+                    </style>""", unsafe_allow_html=True)
+        st.image('https://i.imgur.com/496a9Yz.gif', caption='Predicting...')
+
+        prediction = backend.predict(lenght, host_popularity, guest_popularity, missing_guest, podcast, title, genre, ads, sentiment, publication_day, publication_time)
+        st.write('')
+    
+    st.markdown(
+        f"""
+        <div style="
+            display:flex; 
+            align-items:center; 
+            background-color:#18162F; 
+            border:1px solid #118DFF; 
+            border-radius:8px; 
+            padding:15px;
+            max-width:400px;
+            margin: auto;
+            overflow: ">
+                    
+        <div style="display:flex; flex-direction:column; text-align: left;">
+            <span style="font-size:22px; font-weight:bold;">Average listening time for this episode:</span>
+            <span style="font-size:46px; color:#118DFF;">{prediction} min</span>
+            </div>
+        
+        <img src="https://i.imgur.com/SmKs4JV.png" width="100px" style="margin-right:10px;">
+            
+        </div>
+        """,
+        unsafe_allow_html=True)

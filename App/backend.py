@@ -1,11 +1,13 @@
 import numpy as np
+import pandas as pd
+import joblib
 
 def predict(
 lenght = 65,
 host_popularity = 60,
 guest_popularity = 52.51,  # Average Popularity when no guest is present
 missing_guest = 1,
-podcast = 'Game Day',
+podcast = 46.723734650096695,
 title = 1,
 genre = 'News',
 ads = 1,
@@ -41,3 +43,25 @@ publication_time = 12):
     # encoding for days (0-6)
     Day_sin = np.sin(2 * np.pi * publication_day / 7)
     Day_cos = np.cos(2 * np.pi * publication_day / 7)
+
+    model = joblib.load('../Models/random_forest_model_encoded.pkl')
+    
+    data = {'Episode_Title': title,
+            'Episode_Length_minutes': lenght,
+            'Host_Popularity_percentage': host_popularity,
+            'Guest_Popularity_percentage': guest_popularity,
+            'Number_of_Ads': ads,
+            'Episode_Sentiment': sentiment,
+            'Guest_Popularity_missing': missing_guest,
+            'Genre_encoded': genre_map[genre],
+            'Time_sin': Time_sin,
+            'Time_cos': Time_cos,
+            'Day_sin': Day_sin,
+            'Day_cos': Day_cos,
+            'Podcast_Encoded': podcast}
+    
+    input_data = pd.DataFrame([data])
+
+    prediction = model.predict(input_data)
+
+    return prediction[0].round(2)
