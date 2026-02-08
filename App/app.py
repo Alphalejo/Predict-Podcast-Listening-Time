@@ -1,7 +1,5 @@
 import streamlit as st
 import json
-import joblib
-
 
 base="light"
 primaryColor="forestGreen"
@@ -23,7 +21,54 @@ with open('./data/publication_time.json', 'r') as f:
     time = json.load(f)
 
 
-podcasts_map = joblib.load('../artifacts/podcast_target_encoding.pkl').to_dict()
+podcasts_map = {"Athlete's Arena": 46.723734650096695,
+ 'Brain Boost': 44.502374696903615,
+ 'Business Briefs': 47.1126725807403,
+ 'Business Insights': 44.200050789037604,
+ 'Comedy Corner': 44.01677780841343,
+ 'Crime Chronicles': 47.730286299942094,
+ 'Criminal Minds': 43.59860028555392,
+ 'Current Affairs': 43.53176316592438,
+ 'Daily Digest': 45.71123949943967,
+ 'Detective Diaries': 46.56999211685686,
+ 'Digital Digest': 44.894253550405566,
+ 'Educational Nuggets': 45.83290442009784,
+ 'Fashion Forward': 45.32969686896353,
+ 'Finance Focus': 43.2573432753232,
+ 'Fitness First': 45.81604068013641,
+ 'Funny Folks': 45.12644830757489,
+ 'Gadget Geek': 47.099616068476976,
+ 'Game Day': 43.97879716314356,
+ 'Global News': 45.399679196900635,
+ 'Health Hour': 45.30267410724407,
+ 'Healthy Living': 45.209574386163005,
+ 'Home & Living': 46.312802051194254,
+ 'Humor Hub': 45.85645861477878,
+ 'Innovators': 45.9535998601466,
+ 'Joke Junction': 42.63949432930387,
+ 'Laugh Line': 44.468066701459605,
+ 'Learning Lab': 45.46308937970307,
+ 'Life Lessons': 45.181807014758874,
+ 'Lifestyle Lounge': 45.53314619754197,
+ 'Market Masters': 46.20585023679939,
+ 'Melody Mix': 48.13329069930533,
+ 'Mind & Body': 46.66583613892194,
+ 'Money Matters': 47.955538832287665,
+ 'Music Matters': 45.945354077870874,
+ 'Mystery Matters': 45.93303612797758,
+ 'News Roundup': 42.65358464826839,
+ 'Sound Waves': 44.42823407477307,
+ 'Sport Spot': 44.697550374894696,
+ 'Sports Central': 41.74285059612863,
+ 'Sports Weekly': 46.96406299036968,
+ 'Study Sessions': 46.834017419818096,
+ 'Style Guide': 45.009454883735955,
+ 'Tech Talks': 46.270802759759924,
+ 'Tech Trends': 44.59238142207126,
+ 'True Crime Stories': 46.20019379874599,
+ 'Tune Time': 46.9193279239406,
+ 'Wellness Wave': 45.94061818584811,
+ 'World Watch': 44.00374133464532}
 
 
 # ==============================================================================
