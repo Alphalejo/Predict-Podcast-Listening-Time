@@ -11,13 +11,13 @@ primaryColor="forestGreen"
 with open('./App/data/podcast_names.json', 'r') as f:
     podcast_names = json.load(f)
 
-with open('./data/genres.json', 'r') as f:
+with open('./App/data/genres.json', 'r') as f:
     genres_list = json.load(f)
 
-with open('./data/days.json', 'r') as f:
+with open('./App/data/days.json', 'r') as f:
     days = json.load(f)
 
-with open('./data/publication_time.json', 'r') as f:
+with open('./App/data/publication_time.json', 'r') as f:
     time = json.load(f)
 
 
