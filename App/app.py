@@ -1,6 +1,8 @@
 import streamlit as st
 import json
 
+import backend
+
 base="light"
 primaryColor="forestGreen"
 
@@ -177,7 +179,6 @@ else:
 
 st.divider()
 
-import backend
     
 st.markdown("""<style>
             .st-emotion-cache-13gev4o{
