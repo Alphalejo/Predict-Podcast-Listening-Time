@@ -8,7 +8,7 @@ primaryColor="forestGreen"
 # Importing Required Data
 # ==============================================================================
 
-with open('./data/podcast_names.json', 'r') as f:
+with open('./App/data/podcast_names.json', 'r') as f:
     podcast_names = json.load(f)
 
 with open('./data/genres.json', 'r') as f:
